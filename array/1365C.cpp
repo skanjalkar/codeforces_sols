@@ -12,12 +12,21 @@ void solve() {
     for (int i = 0; i < n; ++i) {
         cin >> b[i];
     }
-    int c[2*n];
+    map<int, int>st;
     for (int i = 0; i < n; ++i) {
-        c[i] = b[i];
-        c[i+n] = b[i];
+        st[a[i]] = i;
     }
-     
+    map<int, int>offset;
+    for (int i = 0; i < n; ++i) {
+        int of = st[b[i]] - i;
+        if (of < 0) of += n;
+        offset[of]++;
+    }
+    int ans = -1;
+    for (auto i : offset) {
+        ans = max(ans, i.second);
+    }
+    cout << ans << "\n";
     return;
 }
 
