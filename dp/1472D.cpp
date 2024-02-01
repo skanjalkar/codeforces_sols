@@ -4,30 +4,31 @@ using namespace std;
 
 void solve() {
     int n; cin >> n;
-    int a[n];
+    vector<long long>a(n);
     for (int i = 0; i < n; ++i) {
         cin >> a[i];
     }
-    vector<vector<int<vector<int>>>dp(n, vector<vector<int>>(2, vector<int>(3, 0)));
-    vector<int> even, odd;
+    sort(a.rbegin(), a.rend());
+//    sort(a, a+n, [&] (const long long &x, const long long &b) { return x > b; });
+    long long ans = 0;
     for (int i = 0; i < n; ++i) {
-        if (i % 2) odd.push_back(a[i]);
-        else even.push_back(a[i]);
-    }
-    sort(even.begin(), even.end(), [&] (const int& a, const int& b) { return a > b; });
-    sort(odd.begin(), odd.end(), [&] (const int& a, const int& b) { return a > b; });
-    int i = 0, j = 0;
-    dp[0][0] = {even[i], i+1, j};
-    dp[0][1] = {0, j+1, i};
-    for (int idx = 1; idx < n; ++i) {
-        if (idx % 2 == 0) {
-            // alice playing
-            dp[idx][0] = max(dp[idx-1][0]
+        if (i % 2 == 0) {
+            if (a[i] % 2 == 0) {
+                ans += a[i];
+            }
         }
         else {
-        
+            if (a[i] % 2 == 1) {
+                ans -= a[i];
+            }
         }
-    }  
+    }
+    if (ans == 0) {
+        cout << "Tie" << endl;
+    }
+    else {
+        cout << (ans > 0 ? "Alice" : "Bob") << endl;
+    }
     return;
 }
 
