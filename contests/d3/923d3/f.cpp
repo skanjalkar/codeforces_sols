@@ -28,6 +28,8 @@ void solve() {
     vector<int> parent(n + 1, -1);
     // cycle stores min weight and number of vertices in the cycle
     vector<pair<int, int>> cycle;
+    // also need the cycle
+
 
     // dfs to find cycle
     function<void(int, int)> dfs = [&](int u, int p) {
@@ -40,10 +42,6 @@ void solve() {
                 int x = u, y = v.first;
                 int w = edges[{x, y}];
                 int cnt = 0;
-                for (int i : parent) {
-                    cout << i << " ";
-                }
-                cout << endl;
                 while (x != -1) {
                     x = parent[x];
                     w = min(w, edges[{x, parent[x]}]);

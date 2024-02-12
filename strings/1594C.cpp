@@ -6,23 +6,34 @@ void solve() {
     int n; cin >> n;
     char c; cin >> c;
     string s; cin >> s;
-    // always use n and some number that doesn't divide n
-    unordered_set<char> st;
-    for (const char& d: s) st.insert(d);
-    if (st.size() == 1 && st.count(c)) {
-        cout << "0" << endl;
+    vector<int> ans;
+    bool ok = true;
+    for (const char& i : s)
+        if (i != c) ok = false;
+    if (!ok) {
+        for (int i = 1; i < n+1; ++i) {
+            ok = true;
+            for (int j = i; j < n+1; ++j) {
+                ok &= (s[j-1] == c);
+                j += i-1;
+            }
+            if (ok) {
+                ans.push_back(i);
+                break;
+            }
+        }
+        if (!ok) {
+            ans.push_back(n);
+            ans.push_back(n-1);
+        }
     }
-    else if (st.size() == 2 && s.back() == c) {
-        cout << 1 << endl;
-        cout << n << endl;
+    cout << ans.size() << "\n";
+    for (int i = 0; i < ans.size(); ++i) {
+        cout << ans[i] << " ";
     }
-    else {
-        cout << 2 << endl;
-        cout << n-1 << " " << n << endl;
-    }
-    return;
-            
+    if (ans.size()) cout << "\n";
 }
+
 
 int main() {
     ios_base::sync_with_stdio(false);
