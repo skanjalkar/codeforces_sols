@@ -12,10 +12,6 @@ void solve() {
     for (int i = 0; i < k; ++i) {
         cin >> pairs[i][1];
     }
-
-    long long ans = 0;
- 
-    
     
     return;
 }
