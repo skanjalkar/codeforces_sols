@@ -31,27 +31,36 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 
 void solve() {
-    long long n, k;
-    cin >> n >> k;
-    debug(n, k);
-    if (k > 1 && k < n) {
-        cout << -1 << endl;
+    int n, k, q;
+    cin >> n >> k >> q;
+    vector<long long>a(k+1, 0), b(k+1, 0);
+    for (int i = 0; i < k; ++i) {
+        cin >> a[i+1];
     }
-    else if (k == n) {
-        vector<int>ans(n, 5);
-        for (int i : ans) {
-            cout << i << " ";
+    for (int i = 0; i < k; ++i) {
+        cin >> b[i+1];
+    }
+    for (int i = 0; i < q; ++i) {
+        long long d; cin >> d;
+        int l = 0, r = k;
+        while (l <= r) {
+            int mid = (l + r) >> 1;
+            if (a[mid] > d) {
+                r = mid - 1;
+            }
+            else {
+                l = mid + 1;
+            }
         }
-        cout << endl;
-    }
-    else {
-        vector<int>ans(n, 0);
-        iota(ans.begin(), ans.end(), 1);
-        for (int i = 0; i < n; ++i) {
-            cout << ans[i] << " ";
+        if (a[r] == d) {
+            cout << b[r] << " ";
         }
-        cout << endl;
+        else {
+            long long ans = b[r] + (d-a[r]) * (b[r+1] - b[r]) / (a[r+1] - a[r]);
+            cout << ans << " ";
+        }
     }
+    cout << endl;
     return;
 }
 
@@ -59,9 +68,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    // 1 2 3 4 5
-    // 1 1 1 2 3
-    // 1 1 2 3 1
+
     int t; cin >> t;
     while (t--) {
         solve();

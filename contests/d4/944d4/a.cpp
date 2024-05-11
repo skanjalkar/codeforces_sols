@@ -31,27 +31,9 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 
 void solve() {
-    long long n, k;
-    cin >> n >> k;
-    debug(n, k);
-    if (k > 1 && k < n) {
-        cout << -1 << endl;
-    }
-    else if (k == n) {
-        vector<int>ans(n, 5);
-        for (int i : ans) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    else {
-        vector<int>ans(n, 0);
-        iota(ans.begin(), ans.end(), 1);
-        for (int i = 0; i < n; ++i) {
-            cout << ans[i] << " ";
-        }
-        cout << endl;
-    }
+    int x, y;
+    cin >> x >> y;
+    cout << min(x, y) << " " << max(x, y) << endl;
     return;
 }
 
@@ -59,9 +41,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    // 1 2 3 4 5
-    // 1 1 1 2 3
-    // 1 1 2 3 1
+
     int t; cin >> t;
     while (t--) {
         solve();

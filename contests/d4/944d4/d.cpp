@@ -31,37 +31,24 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 
 void solve() {
-    long long n, k;
-    cin >> n >> k;
-    debug(n, k);
-    if (k > 1 && k < n) {
-        cout << -1 << endl;
+    string s;
+    cin >> s;
+    int ans = 1;
+    bool ok = false;
+    const int n = (int) s.size();
+    for (int i = 1; i < n; ++i) {
+        ans += (s[i] != s[i-1]);
+        ok |= (s[i-1] == '0' && s[i] == '1');
     }
-    else if (k == n) {
-        vector<int>ans(n, 5);
-        for (int i : ans) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    else {
-        vector<int>ans(n, 0);
-        iota(ans.begin(), ans.end(), 1);
-        for (int i = 0; i < n; ++i) {
-            cout << ans[i] << " ";
-        }
-        cout << endl;
-    }
-    return;
+ 
+    cout << ans - ok << endl;
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    // 1 2 3 4 5
-    // 1 1 1 2 3
-    // 1 1 2 3 1
+
     int t; cin >> t;
     while (t--) {
         solve();
