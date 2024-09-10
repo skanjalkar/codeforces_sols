@@ -10,7 +10,7 @@ fi
 NEW_FILE="$1"
 
 # Template file location (modify this path if the template is in a different directory)
-TEMPLATE_FILE="/home/enryu/github_stuff/cpplearn/codeforces_sols/template.cpp"
+TEMPLATE_FILE="/home/enryu/github_stuff/learn/cpplearn/codeforces_sols/template.cpp"
 
 # Check if the template file exists
 if [ ! -f "$TEMPLATE_FILE" ]; then
